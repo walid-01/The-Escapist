@@ -3,15 +3,12 @@ using UnityEngine;
 
 public class DoubleSequentialAnimation : MonoBehaviour
 {
-    [SerializeField] private GameObject firstUnlocker;
-    [SerializeField] private GameObject secondUnlocker;
+    [SerializeField] private IUse cable;
+    [SerializeField] private MultiLevers levers;
     [SerializeField] private string animationOn;
 
-    private IUnlockable firstUnlockable;
-    private IUnlockable secondUnlockable;
-
-    private bool firstUnlockableUnlocked;
-    private bool secondUnlockableUnlocked;
+    private bool isCablePut;
+    private bool isLeversUnlocked;
 
     private Animator animator;
 
@@ -19,33 +16,28 @@ public class DoubleSequentialAnimation : MonoBehaviour
     {
         animator = gameObject.GetComponent<Animator>();
 
-        firstUnlockable = firstUnlocker.GetComponent<IUnlockable>();
-        firstUnlockable.OnToggle += UnlockFirstUnlockable;
+        cable.OnToggle += UnlockFirstUnlockable;
 
-        secondUnlockable = secondUnlocker.GetComponent<IUnlockable>();
-        secondUnlockable.OnToggle += UnlockSecondUnlockable;
+        levers.OnToggle += UnlockSecondUnlockable;
     }
 
     private void UnlockFirstUnlockable(object sender, EventArgs e)
     {
-        firstUnlockableUnlocked = true;
+        isCablePut = true;
         TryUnlock();
     }
 
     private void UnlockSecondUnlockable(object sender, EventArgs e)
     {
-        secondUnlockableUnlocked = true;
+        isLeversUnlocked = true;
         TryUnlock();
     }
 
     public void TryUnlock()
     {
-        if (firstUnlockableUnlocked)
+        if (isCablePut && isLeversUnlocked)
         {
-            if (secondUnlockableUnlocked)
-            {
-                animator.Play(animationOn, 0, 0.0f);
-            }
+            animator.Play(animationOn, 0, 0.0f);
         }
     }
 }

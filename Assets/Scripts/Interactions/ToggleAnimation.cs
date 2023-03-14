@@ -3,11 +3,13 @@ using UnityEngine;
 
 public class ToggleAnimation : Door
 {
-    [SerializeField] private ILever unlocker;
+    [SerializeField] private GameObject unlocker;
+    private IUnlockable unlockable;
 
     private void Awake()
     {
-        unlocker.OnToggle += ChangeAnimation;
+        unlockable = unlocker.GetComponent<IUnlockable>();
+        unlockable.OnToggle += ChangeAnimation;
     }
 
     public void ChangeAnimation(object sender, EventArgs e)

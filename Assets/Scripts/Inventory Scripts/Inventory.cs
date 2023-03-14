@@ -15,10 +15,10 @@ public class Inventory
         // AddItem(new Item { itemType = Item.ItemType.TorchOff });
         //AddItem(new Item { itemType = Item.ItemType.Axe });
         //AddItem(new Item { itemType = Item.ItemType.TorchOn });
-        //AddItem(new Item { itemType = Item.ItemType.GreenKey });
-        //AddItem(new Item { itemType = Item.ItemType.BlueKey });
-        AddItem(new Item { itemType = Item.ItemType.RedKey });
-        AddItem(new Item { itemType = Item.ItemType.Cable });
+        // AddItem(new Item { itemType = Item.ItemType.GreenKey });
+        AddItem(new Item { itemType = Item.ItemType.BlueKey });
+        // AddItem(new Item { itemType = Item.ItemType.RedKey });
+        // AddItem(new Item { itemType = Item.ItemType.Cable });
         //AddItem(new Item { itemType = Item.ItemType.Stick });
         //AddItem(new Item { itemType = Item.ItemType.Coal });
     }

@@ -6,7 +6,7 @@ public class IWorkbench : MonoBehaviour, IInteractable
     [SerializeField] GameObject hiddenTorch;
     [SerializeField] GameObject hiddenStick;
     [SerializeField] GameObject hiddenCoal;
-    
+
     private Player playerObj;
     private DataManager dataManager;
 
