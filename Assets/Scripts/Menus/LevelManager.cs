@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.Scripting.Python;
 using System.Diagnostics;
 using Debug = UnityEngine.Debug;
 
@@ -41,7 +39,7 @@ public class LevelManager : MonoBehaviour
 
         database = db.GetComponent<DataBase>();
         database.CreateDB();
-        latestSession = database.GetRow(database.GetActiveSessionID() -1);
+        latestSession = database.GetRow(database.GetActiveSessionID() - 1);
 
         if (calculateDifficulty)
         {

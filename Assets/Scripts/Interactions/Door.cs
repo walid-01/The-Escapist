@@ -3,30 +3,14 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    private Animator doorAnim;
-    private readonly float waitTimer = 1.2f;
-    public bool isOpen = false;
-    private bool pauseInteraction = false;
-
-    [SerializeField] bool isOutward;
-    private string openDoorAnimation;
-    private string closeDoorAnimation;
-
+    [SerializeField] private float animationDuration = 1.2f;
+    private Animator animator;
     private DataManager dataManager;
+    private bool pauseInteraction = false;
 
     private void Start()
     {
-        doorAnim = gameObject.GetComponentInParent<Animator>();
-        if (!isOutward)
-        {
-            openDoorAnimation = "OpenDoor";
-            closeDoorAnimation = "CloseDoor";
-        }
-        else
-        {
-            openDoorAnimation = "OpenDoorOutward";
-            closeDoorAnimation = "CloseDoorOutward";
-        }
+        animator = gameObject.GetComponentInParent<Animator>();
 
         dataManager = GameObject.Find("Player").GetComponent<DataManager>();
     }
@@ -35,18 +19,10 @@ public class Door : MonoBehaviour
     {
         if (!pauseInteraction)
         {
-            if (!isOpen)
-            {
-                OpenDoor();
-                dataManager.SucceededInteract(name, true);
-
-            }
-            else
-            {
-                CloseDoor();
-                dataManager.SucceededInteract(name, false);
-
-            }
+            // dataManager.SucceededInteract(name, false);
+            // Debug.Log(animator);
+            // Debug.Log(gameObject.GetComponentInParent<Animator>());
+            animator.SetTrigger("On Interact");
 
             StartCoroutine(PauseInteraction());
         }
@@ -56,22 +32,10 @@ public class Door : MonoBehaviour
         }
     }
 
-    public void OpenDoor()
-    {
-        doorAnim.Play(openDoorAnimation, 0, 0.0f);
-        isOpen = true;
-    }
-
-    public void CloseDoor()
-    {
-        doorAnim.Play(closeDoorAnimation, 0, 0.0f);
-        isOpen = false;
-    }
-
     private IEnumerator PauseInteraction()
     {
         pauseInteraction = true;
-        yield return new WaitForSeconds(waitTimer);
+        yield return new WaitForSeconds(animationDuration);
         pauseInteraction = false;
     }
 }

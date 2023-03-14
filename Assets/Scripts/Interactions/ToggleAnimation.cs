@@ -1,34 +1,17 @@
 using System;
 using UnityEngine;
 
-public class ToggleAnimation : MonoBehaviour
+public class ToggleAnimation : Door
 {
-    [SerializeField] private GameObject unlocker;
-    [SerializeField] private string animationOn;
-    [SerializeField] private string animationOff;
+    [SerializeField] private ILever unlocker;
 
-    private IUnlockable unlockable;
-    private Animator animator;    
-    private bool isOn = false;
-
-    private void Start()
+    private void Awake()
     {
-        animator = gameObject.GetComponent<Animator>();
-
-        unlockable = unlocker.GetComponent<IUnlockable>();
-        unlockable.OnToggle += ChangeAnimation;
+        unlocker.OnToggle += ChangeAnimation;
     }
 
     public void ChangeAnimation(object sender, EventArgs e)
     {
-        if (isOn)
-        {
-            animator.Play(animationOff, 0, 0.0f);
-        }
-        else
-        {
-            animator.Play(animationOn, 0, 0.0f);
-        }
-        isOn = !isOn;
+        PlayAnimation();
     }
 }

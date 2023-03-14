@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class AddItemOnInteract : MonoBehaviour
 {
-    [SerializeField] private GameObject unlocker;
     [SerializeField] private Item.ItemType item;
     private IUnlockable unlockable;
 

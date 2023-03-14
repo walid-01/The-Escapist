@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class DoubleSequentialAnimation : MonoBehaviour
 {
-    //optimizable -> make it a child of Door Class
-
     [SerializeField] private GameObject firstUnlocker;
     [SerializeField] private GameObject secondUnlocker;
     [SerializeField] private string animationOn;

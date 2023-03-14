@@ -2,7 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory {
+public class Inventory
+{
     private List<Item> itemList;
     public event EventHandler OnItemListChanged;
     public Item heldItem = null;
@@ -11,12 +12,13 @@ public class Inventory {
     {
         itemList = new List<Item>();
 
-        //AddItem(new Item { itemType = Item.ItemType.Shovel });
+        // AddItem(new Item { itemType = Item.ItemType.TorchOff });
         //AddItem(new Item { itemType = Item.ItemType.Axe });
         //AddItem(new Item { itemType = Item.ItemType.TorchOn });
         //AddItem(new Item { itemType = Item.ItemType.GreenKey });
         //AddItem(new Item { itemType = Item.ItemType.BlueKey });
-        //AddItem(new Item { itemType = Item.ItemType.RedKey });
+        AddItem(new Item { itemType = Item.ItemType.RedKey });
+        AddItem(new Item { itemType = Item.ItemType.Cable });
         //AddItem(new Item { itemType = Item.ItemType.Stick });
         //AddItem(new Item { itemType = Item.ItemType.Coal });
     }
@@ -92,7 +94,7 @@ public class Inventory {
         {
             heldItem = null;
         }
-        else 
+        else
         {
             heldItem = holdItem;
             if (holdItem != null) heldItem.isActive = true;
